@@ -21,8 +21,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 {
     public $allowedIPs = ['127.0.0.1', '::1'];
 
-    public $allowedUsers = [];
-
     public $controllerNamespace = 'choate\vsftpd\controllers';
 
     public $vsftpdUserConfigPath = '';

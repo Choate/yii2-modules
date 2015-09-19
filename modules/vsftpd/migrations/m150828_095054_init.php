@@ -1,4 +1,5 @@
 <?php
+
 use yii\db\Schema;
 use yii\db\Migration;
 
@@ -10,9 +11,12 @@ class m150828_095054_init extends Migration
                 'username' => Schema::TYPE_STRING . '(45) NOT NULL',
                 'password' => Schema::TYPE_STRING . '(45) NOT NULL',
                 'name'     => Schema::TYPE_STRING . '(45) NOT NULL',
+                'setting'     => Schema::TYPE_TEXT . ' NULL',
             ]
         );
         $this->createIndex('username', 'vsftpd_user', 'username', true);
+
+        return true;
     }
 
     public function down() {
