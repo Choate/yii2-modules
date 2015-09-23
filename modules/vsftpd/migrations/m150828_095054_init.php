@@ -20,7 +20,7 @@ class m150828_095054_init extends Migration
     }
 
     public function down() {
-        $this->dropTable('vsftpd_user');
+        $this->dropTable('IF EXISTS `vsftpd_user`');
 
         return true;
     }

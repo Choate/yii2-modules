@@ -10,6 +10,7 @@ namespace choate\vsftpd;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
+use yii\base\InvalidConfigException;
 use yii\web\ForbiddenHttpException;
 
 /**
@@ -17,22 +18,23 @@ use yii\web\ForbiddenHttpException;
  * @package choate\vsftpd
  * @author Choate <choate.yao@gmail.com>
  */
-class Module extends \yii\base\Module implements BootstrapInterface
+class Module extends \yii\base\Module
 {
+    public $layout = 'main';
+
     public $allowedIPs = ['127.0.0.1', '::1'];
 
     public $controllerNamespace = 'choate\vsftpd\controllers';
 
-    public $vsftpdUserConfigPath = '';
+    public $vsftpdUserConfigPath = '/tmp';
 
     public $newFileMode = 0666;
 
-    /**
-     * Bootstrap method to be called during application bootstrap stage.
-     *
-     * @param Application $app the application currently running
-     */
-    public function bootstrap($app) {
+    public function init() {
+        parent::init();
+        if (!is_writeable($this->vsftpdUserConfigPath)) {
+            throw new InvalidConfigException('vsftpdUserConfigPath');
+        }
     }
 
     public function beforeAction($action) {

@@ -46,8 +46,9 @@ class m150828_095054_initTest extends TestCase
 
     protected function setUp() {
         self::mockApplication($this->getConfig());
-        include '../../migrations/m150828_095054_init.php';
+        include __DIR__ . '/../../migrations/m150828_095054_init.php';
         $this->obj = new \m150828_095054_init();
+        $this->obj->down();
     }
 
     protected function tearDown() {

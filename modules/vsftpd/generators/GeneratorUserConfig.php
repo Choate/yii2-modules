@@ -30,6 +30,12 @@ class GeneratorUserConfig extends Component
      */
     protected $_model;
 
+    /**
+     *
+     * @since 1.0
+     * @author Choate <choate.yao@gmail.com>
+     * @return bool|int
+     */
     function generate() {
         $path = $this->getModule()->vsftpdUserConfigPath;
         if (!is_writable($path)) {
@@ -38,6 +44,22 @@ class GeneratorUserConfig extends Component
         $model = $this->getModel();
 
         return file_put_contents("{$path}/{$model->username}", $model->buildConfigBySetting());
+    }
+
+    /**
+     *
+     * @since 1.0
+     * @author Choate <choate.yao@gmail.com>
+     * @return bool
+     */
+    public function remove() {
+        $model = $this->getModel();
+        $path  = $this->getModule()->vsftpdUserConfigPath . "/{$model->username}";
+        if (!is_writable($path)) {
+            return false;
+        }
+
+        return unlink($path);
     }
 
     /**

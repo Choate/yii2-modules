@@ -54,14 +54,13 @@ class User extends ActiveRecord
             [
                 'class'      => AttributeBehavior::className(),
                 'attributes' => [
-                    self::EVENT_BEFORE_INSERT => 'setting',
-                    self::EVENT_BEFORE_UPDATE => 'setting',
+                    self::EVENT_BEFORE_INSERT => [null],
+                    self::EVENT_BEFORE_UPDATE => [null],
                 ],
                 'value'      => function ($event) {
                     /* @var User $model */
-                    $model = $event->sender;
-
-                    return Json::encode($this->settingBuild());
+                    $model          = $event->sender;
+                    $model->setting = Json::encode($this->settingBuild());
                 }
             ],
             [
@@ -81,9 +80,13 @@ class User extends ActiveRecord
 
     public function attributeLabels() {
         return [
+            'username'       => '用户名',
+            'password'       => '密码',
+            'name'           => '昵称',
+            'localRoot'      => '用户根目录',
             'downloadEnable' => '下载权限',
             'writeEnable'    => '写入权限',
-            'cmdsDenied'     => '拒绝操作',
+            'cmdsDenied'     => '文件操作权限',
         ];
     }
 
