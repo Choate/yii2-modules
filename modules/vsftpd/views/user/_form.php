@@ -11,7 +11,7 @@
 echo $form->field($model, 'username');
 echo $form->field($model, 'password');
 echo $form->field($model, 'name');
-echo $form->field($model, 'localRoot')->hint('请设置该路径下的文件：' . $this->context->module->vsftpdUserConfigPath);
+echo $form->field($model, 'localRoot')->hint('请设置该路径下的文件：' . $this->context->module->vsftpdLocalRoot);
 echo $form->field($model, 'downloadEnable')->radioList($model->getDownloadStatusItem());
 echo $form->field($model, 'writeEnable')->radioList($model->getWriteEnableStatusItem());
 echo $form->field($model, 'cmdsDenied')->checkboxList($model->getFileOperationItem());

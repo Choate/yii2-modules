@@ -28,6 +28,8 @@ class Module extends \yii\base\Module
 
     public $vsftpdUserConfigPath = '/tmp';
 
+    public $vsftpdLocalRoot = '';
+
     public $newFileMode = 0666;
 
     public function init() {
