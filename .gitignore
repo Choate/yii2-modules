@@ -2,3 +2,4 @@ configs/
 vendor/
 .idea/
 composer.lock
+public/.htaccess
